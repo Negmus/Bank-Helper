@@ -26,10 +26,14 @@ def wpisz():  # usowanie spacji i wklejanie tekstu
     nr= str(Entry.get(n1))
     nr=nr.replace(" ", "")
     x=nr.isdigit()
+    lnr=len(nr)
     if(x==False):
-        check.set("BLAD. Literki w nr.")  # dziala/niedziala
+        check.set("Literki w numerze.")  # dziala/niedziala
+    elif lnr != 26:
+        check.set("Za malo cyfr w numerze.")
         return
     else:
+        check.set("Kiknij w pole gdzie chcesz wpisac tekst.")
         global globvar
         globvar = nr
         O = DetectMouseClick()
@@ -39,10 +43,10 @@ def wpisz():  # usowanie spacji i wklejanie tekstu
 globvar = 0
 root = Tk()
 x= Entry(root)
-Label(root, text="Nr konta").grid(row=0, column=0)
+Label(root, text="Nr konta:").grid(row=0, column=0)
 n1= Entry(root)
-n1.grid(row=0, column=1)
-Button(root, text="Wpisuj", command=wpisz).grid(row=0, column=2)
+n1.grid(row=0, column=2)
+Button(root, text="Wpisuj", command=wpisz).grid(row=0, column=4)
 check = StringVar()
-Label(root, textvariable=check).grid(row=1, column=1)  # Tekst na dole
+Label(root, textvariable=check).grid(row=1, column=2)  # Tekst na dole
 root.mainloop()
